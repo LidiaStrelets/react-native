@@ -14,7 +14,7 @@ export default function Welcome() {
         resizeMode="cover"
         style={styles.image}
       >
-        <Text style={styles.text}>Welcome to this test chat application!</Text>
+        <Text style={styles.text}>Welcome to this test chat application, pers!</Text>
         <Text style={styles.smallerText}>
           Here you can find online conversation with different people.
         </Text>

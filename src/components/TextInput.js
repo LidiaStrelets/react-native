@@ -19,7 +19,7 @@ export default function TextInputComponent({
         placeholder={placeholder}
         value={value}
         autoComplete="off"
-        secureTextEntry
+        secureTextEntry={secureTextEntry}
       />
     </View>
   );

@@ -49,7 +49,7 @@ export default function SignIn() {
                   Keyboard.dismiss();
                   setEmail("");
                   setPassword("");
-                  alert(`${email}, " password: ", ${password}`);
+                  alert(`${email},  password: , ${password}`);
                 }}
               >
                 <Text style={styles.link}>Sign in</Text>

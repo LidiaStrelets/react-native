@@ -5,6 +5,9 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import CommonTextComponent from "../components/CommonText";
+import HeaderTextComponent from "../components/HeaderText";
+import LinkComponent from "../components/Link";
 
 export default function Welcome() {
   return (
@@ -14,27 +17,27 @@ export default function Welcome() {
         resizeMode="cover"
         style={styles.image}
       >
-        <Text style={styles.text}>Welcome to this test chat application, pers!</Text>
-        <Text style={styles.smallerText}>
+        <HeaderTextComponent>
+          Welcome to this test chat application!
+        </HeaderTextComponent>
+        <CommonTextComponent>
           Here you can find online conversation with different people.
-        </Text>
-        <Text style={styles.smallerText}>Authorization required to start.</Text>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
+        </CommonTextComponent>
+        <CommonTextComponent>
+          Authorization required to start.
+        </CommonTextComponent>
+        <LinkComponent
+          text="Sign in"
+          handlePress={() => {
             console.log("sign in");
           }}
-        >
-          <Text style={styles.link}>Sign in</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
+        />
+        <LinkComponent
+          text="sign up"
+          handlePress={() => {
             console.log("sign up");
           }}
-        >
-          <Text style={styles.link}>sign up</Text>
-        </TouchableOpacity>
+        />
       </ImageBackground>
     </View>
   );
@@ -48,33 +51,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
-  },
-  smallerText: {
-    fontSize: 20,
-    color: "#fff",
-    textAlign: "center",
-    marginTop: 20,
-  },
-  link: {
-    color: "#e9967a",
-
-    fontSize: 25,
-    textTransform: "uppercase",
-    textAlign: "center",
-
-    borderRadius: 10,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "#e9967a",
-
-    width: 200,
-    padding: 10,
-    marginTop: 10,
   },
 });

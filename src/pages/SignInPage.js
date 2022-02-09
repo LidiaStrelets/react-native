@@ -1,18 +1,17 @@
 import { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   ImageBackground,
   Keyboard,
   SafeAreaView,
-  TouchableOpacity,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
+import LinkComponent from "../components/Link";
 import TextInputComponent from "../components/TextInput";
 
-export default function SignIn() {
+export default function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,19 +41,19 @@ export default function SignIn() {
                 handleTextChange={(value) => setPassword(value)}
               />
             </SafeAreaView>
-            <View style={styles.buttonWrapper}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => {
-                  Keyboard.dismiss();
-                  setEmail("");
-                  setPassword("");
-                  alert(`${email},  password: , ${password}`);
-                }}
-              >
-                <Text style={styles.link}>Sign in</Text>
-              </TouchableOpacity>
-            </View>
+            <LinkComponent
+              text="Sign in"
+              handlePress={() => {
+                console.log("sign in: ", email, password);
+              }}
+            />
+            <LinkComponent
+              text="main page"
+              handlePress={() => {
+                console.log("to main ");
+                navigation.navigate("welcome");
+              }}
+            />
           </ImageBackground>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -69,25 +68,6 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center",
-  },
-
-  link: {
-    color: "#e9967a",
-
-    fontSize: 25,
-    textTransform: "uppercase",
-    textAlign: "center",
-
-    borderRadius: 10,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "#e9967a",
-
-    width: 200,
-    padding: 10,
-    marginTop: 10,
-  },
-  buttonWrapper: {
-    alignItems: "center",
+    // alignItems: "center",
   },
 });

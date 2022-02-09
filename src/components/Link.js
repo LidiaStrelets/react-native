@@ -2,7 +2,7 @@ import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 
 export default function LinkComponent({ handlePress, text }) {
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.7} onPress={handlePress}>
         <Text style={styles.link}>{text}</Text>
       </TouchableOpacity>
@@ -11,6 +11,7 @@ export default function LinkComponent({ handlePress, text }) {
 }
 
 const styles = StyleSheet.create({
+  container: { alignItems: "center" },
   link: {
     color: "#e9967a",
 
@@ -27,5 +28,6 @@ const styles = StyleSheet.create({
     width: 200,
     padding: 10,
     marginTop: 10,
+    marginHorizontal: "auto",
   },
 });

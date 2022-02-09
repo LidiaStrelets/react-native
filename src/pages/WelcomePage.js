@@ -9,7 +9,7 @@ import CommonTextComponent from "../components/CommonText";
 import HeaderTextComponent from "../components/HeaderText";
 import LinkComponent from "../components/Link";
 
-export default function Welcome() {
+export default function Welcome({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -29,6 +29,7 @@ export default function Welcome() {
         <LinkComponent
           text="Sign in"
           handlePress={() => {
+            navigation.navigate("signin");
             console.log("sign in");
           }}
         />
@@ -36,6 +37,7 @@ export default function Welcome() {
           text="sign up"
           handlePress={() => {
             console.log("sign up");
+            navigation.navigate("signup");
           }}
         />
       </ImageBackground>

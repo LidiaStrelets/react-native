@@ -1,21 +1,25 @@
+import { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  Pressable,
+  TouchableWithoutFeedback,
+  SafeAreaView,
+  Keyboard,
+  KeyboardAvoidingView,
 } from "react-native";
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import LinkComponent from "../components/Link";
+import TextInputComponent from "../components/TextInput";
 
-export default function SignUp() {
+export default function SignUp({ navigation }) {
   const [email, setEmail] = useState("");
+  const [nick, setNick] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("./../images/main-image.jpg")}
-        resizeMode="cover"
-        style={styles.image}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={styles.container}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ImageBackground
@@ -23,41 +27,55 @@ export default function SignUp() {
             resizeMode="cover"
             style={styles.image}
           >
-            <SafeAreaView>
-              <TextInput
-                autoFocus
-                keyboardType="email-address"
-                style={styles.input}
-                onChangeText={() => {}}
-                placeholder="email"
-                value={email}
-                autoComplete="off"
-                onChangeText={(value) => setEmail(value)}
-              />
-              <TextInput
-                style={styles.input}
-                onChangeText={(value) => setPassword(value)}
-                value={password}
-                secureTextEntry
-                placeholder="password"
-              />
-            </SafeAreaView>
-            <View style={styles.buttonWrapper}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => {
-                  Keyboard.dismiss();
-                  setEmail("");
-                  setPassword("");
-                  alert(`${email}, " password: ", ${password}`);
-                }}
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <ImageBackground
+                source={require("./../images/main-image.jpg")}
+                resizeMode="cover"
+                style={styles.image}
               >
-                <Text style={styles.link}>Sign in</Text>
-              </TouchableOpacity>
-            </View>
+                <SafeAreaView>
+                  <TextInputComponent
+                    autoFocus
+                    keyboardType="email-address"
+                    style={styles.input}
+                    placeholder="email"
+                    value={email}
+                    autoComplete="off"
+                    handleTextChange={(value) => setEmail(value)}
+                  />
+                  <TextInputComponent
+                    style={styles.input}
+                    placeholder="nickname"
+                    value={nick}
+                    autoComplete="off"
+                    handleTextChange={(value) => setNick(value)}
+                  />
+                  <TextInputComponent
+                    style={styles.input}
+                    handleTextChange={(value) => setPassword(value)}
+                    value={password}
+                    secureTextEntry
+                    placeholder="password"
+                  />
+                </SafeAreaView>
+                <LinkComponent
+                  text="Sign up"
+                  handlePress={() => {
+                    console.log("sign up: ", email, nick, password);
+                  }}
+                />
+                <LinkComponent
+                  text="main page"
+                  handlePress={() => {
+                    console.log("to main ");
+                    navigation.navigate("welcome");
+                  }}
+                />
+              </ImageBackground>
+            </TouchableWithoutFeedback>
           </ImageBackground>
         </TouchableWithoutFeedback>
-      </ImageBackground>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -66,37 +84,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  container: {
+    flex: 1,
+  },
   image: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
-  },
-  smallerText: {
-    fontSize: 20,
-    color: "#fff",
-    textAlign: "center",
-    marginTop: 20,
-  },
-  link: {
-    color: "#fff",
-
-    fontSize: 25,
-    textTransform: "uppercase",
-    textAlign: "center",
-
-    borderRadius: 10,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "#fff",
-
-    width: 200,
-    padding: 10,
-    marginTop: 10,
   },
 });
